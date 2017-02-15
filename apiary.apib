@@ -5,7 +5,7 @@ HOST: https://www.fcpe-norma.fr/api/
 
 FCPE is a API allowing "FCPE Adhésion en ligne" website to create new adhesion in the FCPE Norma Application.
 
-## Informations CDPE Adhesion [/cdpe/{code}/adhesion]
+## Informations CDPE Adhesion [/cdpeadhesion/{code}]
 
 + Parameters
     + code (string) - Code of the CDPE
@@ -75,7 +75,7 @@ Donne les informations d'un CDPE nécéssaires pour l'adhésion en ligne
     + search (string) - Autocomplétion, Recherche commune
 
 ### Recherche commune [GET]
-Liste les commune qui correspondent au texte recherché
+Liste les communes qui correspondent au texte recherché (nom ou code postal)
 
 (Java : appel ComponentService.listCommuneByDebutSaisie()) 
 
