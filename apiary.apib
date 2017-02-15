@@ -13,6 +13,8 @@ FCPE is a API allowing "FCPE Adhésion en ligne" website to create new adhesion 
 ### Get Infos [GET]
 Donne les informations d'un CDPE nécéssaires pour l'adhésion en ligne 
 
+(Java : implémenter un Service ou une méthode dans PerimetreService) 
+
 + Response 200 (application/json)
 
         {
@@ -21,4 +23,107 @@ Donne les informations d'un CDPE nécéssaires pour l'adhésion en ligne
             "cheque_ordre": "FCPE 69",
             "cheque_adresse": "12 avenue Tony Garnier 69007 LYON",
             "virement_iban": "1234-1234-1234-1234-1234-1234-1234",
+            "niveau_adhesion_national": {
+                "adhesion_id": 11,
+                "libelle": "Adhesion Web National",
+                "tarif": 6,
+            },
+            "niveau_adhesion_departemental": {
+                "adhesion_id" : 12,
+                "libelle": "Adhesion Web Dept",
+                "tarif": 12.5,
+            },
+            "niveau_readhesion_departemental": {
+                "adhesion_id": 13,
+                "libelle": "Re-Adhesion Web Dept",
+                "tarif": 10.5,
+            },
+            "niveau_adhesion_local": {
+                "adhesion_id": 14,
+                "libelle": "Adhesion Web Local",
+                "tarif": 3.5,
+            },
+            "niveau_readhesion_local": {
+                "adhesion_id": 15,
+                "libelle": "Re-Adhesion Web Local",
+                "tarif": 2.5,
+            },
+            "abonnement_national": {
+                "revue_id": 12,
+                "libelle": "Revue des parents",
+                "type_abonnement_id": 12,
+                "tarif": 3.35,
+            },
+            "abonnements_departementaux": [{
+                "revue_id": 13,
+                "libelle": "Revue dept A"
+                "type_abonnement_id": 13,
+                "tarif": 2.00,
+            },
+            {
+                "revue_id": 14,
+                "libelle": "Revue dept B",
+                "type_abonnement_id": 14,
+                "tarif": 3.00,
+            },
+            ]
         }
+
+## Recherche Commune [/communes/{search}]
+
++ Parameters
+    + search (string) - Autocomplétion, Recherche commune
+
+### Recherche commune [GET]
+Liste les commune qui correspondent au texte recherché
+
+(Java : appel ComponentService.listCommuneByDebutSaisie()) 
+
++ Response 200 (application/json)
+
+        [
+        {
+            "commune_id": 12,
+            "commune": "LYON 07",
+            "code_postal": "69007",
+            "pays": "FRANCE",
+        },
+        {
+            "commune_id": 13,
+            "commune": "LYON 08",
+            "code_postal": "69008",
+            "pays": "FRANCE",
+        }
+        ]
+
+## Liste Etablissements [/etablissements/{commune}]
+
++ Parameters
+    + commune (string) - nom commune
+
+
+### Liste Etablissements [GET]
+Liste les établissements qui correspondent à la commune donnée
+
+(Java : appel EtablissementScoalireService.listEtablissementScolaireByCritere, critère nom commune)
+
++ Response 200 (application/json)
+
+        [
+        {
+            "etablissement_scolaire_id": 3,
+            "nom": "ECOLE MA JULES FERRY",
+        },
+        {
+            "etablissement_scolaire_id": 8,
+            "nom": "ECOLE PR JEAN JAURES",
+        },
+        {
+            "etablissement_scolaire_id": 15,
+            "nom": "ECOLE PR MARIUS PINARD",
+        },
+        {
+            "etablissement_scolaire_id": 17,
+            "nom": "LYCÉE AGRICOLE ET VITICOLE",
+        }
+        ]
