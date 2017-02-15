@@ -1,0 +1,24 @@
+FORMAT: 1A
+HOST: https://www.fcpe-norma.fr/api/
+
+# fcpe
+
+FCPE is a API allowing "FCPE Adhésion en ligne" website to create new adhesion in the FCPE Norma Application.
+
+## Informations CDPE Adhesion [/cdpe/{code}/adhesion]
+
++ Parameters
+    + code (string) - Code of the CDPE
+
+### Get Infos [GET]
+Donne les informations d'un CDPE nécéssaires pour l'adhésion en ligne 
+
++ Response 200 (application/json)
+
+        {
+            "active": true,
+            "paypal": "paypal@fcpe.fr",
+            "cheque_ordre": "FCPE 69",
+            "cheque_adresse": "12 avenue Tony Garnier 69007 LYON",
+            "virement_iban": "1234-1234-1234-1234-1234-1234-1234",
+        }
