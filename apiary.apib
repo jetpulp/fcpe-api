@@ -114,6 +114,13 @@ Permet d'identifier et de récpérer les informations de l'adhérent
 
 (Java : implémenter un nouveau Service dédié, la gestion de mot de passe est une nouvelle fonctionalité) 
 
+Note: le mot de passe devrait de préférence ne jamais circuler en clair, il serait donc préférable qu'un 
+hash soit généré (en utilisant un nonce basé sur l'heure) le plus tôt possible (idéalement dès le navigateur) 
+et seulement faire circuler cette information.
+
+Note2: le compte devrait se vérouiller automatiquement après un certain nombre de tentatives infructueuses
+afin d'éviter une attaque brute force (le blocage pouvant être seulement temporaire).
+
 + Request (application/json)
 
         { 
