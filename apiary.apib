@@ -5,7 +5,7 @@ HOST: https://www.fcpe-norma.fr/api/
 
 FCPE is a API allowing "FCPE Adhésion en ligne" website to create new adhesion in the FCPE Norma Application.
 
-## Informations CDPE Adhesion [/cdpeadhesion/{code}]
+## Informations CDPE Adhesion [/secure/cdpeadhesion/{code}]
 
 + Parameters
     + code (string) - Code of the CDPE
@@ -90,7 +90,8 @@ Donne les informations d'un CDPE nécéssaires pour l'adhésion en ligne
         }
 
 + Response 404 (application/json)
-## Recherche Commune [/communes/{search}]
+
+## Recherche Commune [/public/communes/{search}]
 
 + Parameters
     + search (string) - Autocomplétion, Recherche commune
@@ -117,7 +118,7 @@ Liste les communes qui correspondent au texte recherché (nom ou code postal)
         }
         ]
 
-## Liste Etablissements [/etablissements/{perimetre_id}/{commune}]
+## Liste Etablissements [/public/etablissements/{perimetre_id}/{commune}]
 
 + Parameters
     + perimetre_id (number) - identifiant departement
@@ -150,7 +151,7 @@ Liste les établissements qui correspondent à la commune donnée
         }
         ]
         
-## Identification Foyer [/foyers/identification]
+## Identification Foyer [/secure/foyers/identification]
 
 ### Identification Foyer [POST]
 Permet d'identifier et de récpérer les informations de l'adhérent 
@@ -175,7 +176,7 @@ afin d'éviter une attaque brute force (le blocage pouvant être seulement tempo
 
     + Attributes (Foyer)
 
-## Changement mot de passe foyer [/foyers/changepassword]
+## Changement mot de passe foyer [/secure/foyers/changepassword]
 
 ### Changement mot de passe foyer [POST]
 Permet de demander le changement du mot de passe d'un foyer 
@@ -191,7 +192,7 @@ Permet de demander le changement du mot de passe d'un foyer
         
 + Response 200
 
-## Creation Foyer [/foyers/adhesionenligne]
+## Creation Foyer [/secure/foyers/adhesionenligne]
 
 ### Creation Foyer [POST]
 Creation du foyer en ligne (adhésion et/ou don)
