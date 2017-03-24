@@ -118,17 +118,16 @@ Liste les communes qui correspondent au texte recherché (nom ou code postal)
         }
         ]
 
-## Liste Etablissements [/public/etablissements/{perimetre_id}/{commune}]
+## Liste Etablissements [/public/etablissements/{commune_id}]
 
 + Parameters
-    + perimetre_id (number) - identifiant departement
-    + commune (string) - nom commune
+    + commune_id (number) - identifiant commune
 
 
 ### Liste Etablissements [GET]
 Liste les établissements qui correspondent à la commune donnée
 
-(Java : appel EtablissementScoalireService.listEtablissementScolaireByCritere, critère nom commune)
+(Java : appel FoyerService.listEtablissementScolaireByCommune, critère id commune)
 
 + Response 200 (application/json)
 
