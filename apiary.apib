@@ -175,6 +175,28 @@ afin d'éviter une attaque brute force (le blocage pouvant être seulement tempo
 
     + Attributes (Foyer)
 
+## Demande de changement de mot de passe foyer [/secure/foyers/askforchangepassword]
+
+### Changement mot de passe foyer [POST]
+Permet de demander le changement du mot de passe d'un foyer, ce denier envoi un mail avec un jeton de validité 
+
+(Java : implémenter un nouveau Service dédié, la gestion de mot de passe est une nouvelle fonctionalité) 
+
+Si l'email n'existe pas dans la base Norma, on 
++ Request (application/json)
+
+        { 
+             "email": "sylvain.pras@jetpulp.fr",
+        }
+        
++ Response 200
+
+        {
+            
+        }
+        
++ Response 404
+
 ## Changement mot de passe foyer [/secure/foyers/changepassword]
 
 ### Changement mot de passe foyer [POST]
@@ -185,7 +207,7 @@ Permet de demander le changement du mot de passe d'un foyer
 + Request (application/json)
 
         { 
-            "foyer_id": "1868478",
+            "jeton": "0412ffc5e7e1a19d8d23b4e288b3ced4",
             "new_password": "P@ssw0rd!"
         }
         
@@ -194,15 +216,17 @@ Permet de demander le changement du mot de passe d'un foyer
 ## Creation Foyer [/secure/foyers/adhesionenligne]
 
 ### Creation Foyer [POST]
-Creation du foyer en ligne (adhésion et/ou don)
+Creation ou Edition du foyer en ligne (adhésion et/ou don)
+
+Si le foyer_id n'est pas renseigné, on fait une création de foyer, sinon c'est une édition.
+
 
 
 + Request (application/json)
 
     + Attributes
         + foyer (Foyer)
-        + adhesion: true (boolean) - false dans le cas d'un don seul
-        + re_adhesion: false (boolean) - true dans le cas d'un foyer déjà adhérent
+        + operation: [ADHESION|RE_ADHESION|DON_SEUL] (string)
         + abonnements (array)
             + type_abonnment_id: 12
         + don: 10 (number)
@@ -232,6 +256,7 @@ Creation du foyer en ligne (adhésion et/ou don)
 
 ## Adresse (object)
 + adresse: 12 avenue tony Garnier (string)
++ commune_id: 1234 (number)
 + code_postal: 69007 (string)
 + ville: LYON (string)
 + pays: FRANCE (string)
