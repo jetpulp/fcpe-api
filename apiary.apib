@@ -218,9 +218,9 @@ Permet de demander le changement du mot de passe d'un foyer
 ### Creation Foyer [POST]
 Creation ou Edition du foyer en ligne (adhésion et/ou don)
 
-Si le foyer_id n'est pas renseigné, on fait une création de foyer, sinon c'est une édition.
-
-
+Si c'est une adhesion il ne doit pas y avoir de numéro de foyer, 
+si c'est une re-adhesion, le numéro de foyer doit être présent et les informations
+du foyer modifiées seront mise à jour.
 
 + Request (application/json)
 
