@@ -230,7 +230,7 @@ du foyer modifiées seront mise à jour.
     + Attributes
         + foyer (Foyer)
         + operation: [ADHESION|RE_ADHESION|DON_SEUL] (string)
-        + paiement: [PAYPAL|CHEQUE|VIREMENT] (string)
+        + paiement: [ATTENTE_PAYPAL|CHEQUE|VIREMENT] (string)
         + abonnements (array)
             + type_abonnment_id: 12
         + don: 10 (number)
@@ -238,6 +238,27 @@ du foyer modifiées seront mise à jour.
 + Response 200
 
         { 
+            "succes" : "true",
+            "message" : "ok",
+            "code_foyer" : "069P170001"
+        }
+
+## Notification paiement paypal [/secure/foyers/notifpaiement]
+
+### Notification paiement (Paypal) [POST]
+Notifie Norma que le paiement est OK, appellé après la notification de la passerelle de paiement
+
++ Request (application/json)
+
+        { 
+            "code_foyer" : "069P170001"
+            "id_transaction" : "xxxxxxxxxxx" 
+        }
+        
++ Response 200
+
+        { 
+            "success" : "true",            
             "message" : "ok"
         }
 
