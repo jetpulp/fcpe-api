@@ -3,7 +3,15 @@ HOST: https://www.fcpe-norma.fr/api/
 
 # fcpe
 
-FCPE is a API allowing "FCPE Adhésion en ligne" website to create new adhesion in the FCPE Norma Application.
+FCPE est une API permettant au site "FCPE Adhésion en ligne" de créer de nouvelles adhésions dans l'application FCPE Norma.
+
+Elle permet également de gérer l'authentification des foyers existants, de modifier leur mot de passe.
+
+Cette API est succeptible d'évoluer et d'être utilisée par d'autres sites de la FCPE.
+
+Certaines parties sont publiques `/public` et ne demandent pas d'authentification, alors que d'autres sont privées `/secure` et demandent une authentification (BASIC dans les headers http).
+
+
 
 ## Informations CDPE Adhesion [/secure/cdpeadhesion/{code}]
 
@@ -12,8 +20,6 @@ FCPE is a API allowing "FCPE Adhésion en ligne" website to create new adhesion 
 
 ### Get Infos [GET]
 Donne les informations d'un CDPE nécéssaires pour l'adhésion en ligne 
-
-(Java : implémenter un Service ou une méthode dans PerimetreService) 
 
 + Response 200 (application/json)
 
@@ -101,7 +107,7 @@ Donne les informations d'un CDPE nécéssaires pour l'adhésion en ligne
 ### Recherche commune [GET]
 Liste les communes qui correspondent au texte recherché (nom ou code postal)
 
-(Java : appel ComponentService.listCommuneByDebutSaisie()) 
+Public : peux être appelé directement depuis le navigateur.
 
 + Response 200 (application/json)
 
@@ -129,7 +135,7 @@ Liste les communes qui correspondent au texte recherché (nom ou code postal)
 ### Liste Etablissements [GET]
 Liste les établissements qui correspondent à la commune donnée
 
-(Java : appel FoyerService.listEtablissementScolaireByCommune, critère id commune)
+Public : peux être appelé directement depuis le navigateur.
 
 + Response 200 (application/json)
 
@@ -165,15 +171,6 @@ Liste les établissements qui correspondent à la commune donnée
 ### Identification Foyer [POST]
 Permet d'identifier et de récpérer les informations de l'adhérent 
 
-(Java : implémenter un nouveau Service dédié, la gestion de mot de passe est une nouvelle fonctionalité) 
-
-Note: le mot de passe devrait de préférence ne jamais circuler en clair, il serait donc préférable qu'un 
-hash soit généré (en utilisant un nonce basé sur l'heure) le plus tôt possible (idéalement dès le navigateur) 
-et seulement faire circuler cette information.
-
-Note2: le compte devrait se vérouiller automatiquement après un certain nombre de tentatives infructueuses
-afin d'éviter une attaque brute force (le blocage pouvant être seulement temporaire).
-
 + Request (application/json)
 
         { 
@@ -190,9 +187,8 @@ afin d'éviter une attaque brute force (le blocage pouvant être seulement tempo
 ### Changement mot de passe foyer [POST]
 Permet de demander le changement du mot de passe d'un foyer, ce denier envoi un mail avec un jeton de validité 
 
-(Java : implémenter un nouveau Service dédié, la gestion de mot de passe est une nouvelle fonctionalité) 
+Si l'email n'existe pas dans la base Norma, on répond 404 
 
-Si l'email n'existe pas dans la base Norma, on 
 + Request (application/json)
 
         { 
@@ -213,8 +209,6 @@ Si l'email n'existe pas dans la base Norma, on
 ### Changement mot de passe foyer [POST]
 Permet de demander le changement du mot de passe d'un foyer 
 
-(Java : implémenter un nouveau Service dédié, la gestion de mot de passe est une nouvelle fonctionalité) 
-
 + Request (application/json)
 
         { 
@@ -233,6 +227,8 @@ Si c'est une adhesion il ne doit pas y avoir de numéro de foyer,
 si c'est une re-adhesion, le numéro de foyer doit être présent et les informations
 du foyer modifiées seront mise à jour.
 
+Le paramètre dryn_run permet de faire un appel qui va vérifier les conditions d'adhésion mai ne pas créer l'adhésion, utilisé AVANT le paiement Paypal
+
 + Request (application/json)
 
     + Attributes
@@ -242,33 +238,16 @@ du foyer modifiées seront mise à jour.
         + abonnements (array)
             + type_abonnment_id: 12
         + don: 10 (number)
+        + transaction_id: TRANSID1234 (string)
+        + dry_run: false (boolean)
         
 + Response 200
 
         { 
-            "succes" : "true",
             "message" : "ok",
             "code_foyer" : "069P170001"
         }
 
-## Notification paiement paypal [/secure/foyers/notifpaiement]
-
-### Notification paiement (Paypal) [POST]
-Notifie Norma que le paiement est OK, appellé après la notification de la passerelle de paiement
-
-+ Request (application/json)
-
-        { 
-            "code_foyer" : "069P170001"
-            "id_transaction" : "xxxxxxxxxxx" 
-        }
-        
-+ Response 200
-
-        { 
-            "success" : "true",            
-            "message" : "ok"
-        }
 
 # Data Structures
 
@@ -282,6 +261,7 @@ Notifie Norma que le paiement est OK, appellé après la notification de la pass
 + adresse (Adresse)
 + email: jean.dupond@jetpulp.fr (string)
 + telephone_mobile: 0678784565 (string)
++ newsletter: true (boolean)
 + enfants (array[Enfant])
 
 ## Personne (object)
