@@ -249,6 +249,149 @@ Le paramètre dryn_run permet de faire un appel qui va vérifier les conditions 
         }
 
 
+## Workflow validation adhésions en ligne [/normarest/workflow/adhesionenligne]
+
+### Workflow validation adhésions en ligne [POST]
+Liste des foyers ayant créé une adhésion en ligne à valider
+
+Le paramètre mode_rglt est facultatif
+
++ Request (application/json)
+
+        {
+            "cdpe_id": 69,
+            "type_paiement": "PAYPAL"
+        }
+        
++ Response 200
+
+        [
+        {
+            "foyer_id" : 1234,
+            "code" : "069P170001",
+            "cpe_principal_id": 234,
+            "parent_principal": {
+                "id": 12,
+                "nom": "DUPOND",
+                "prenom": "Jean", 
+                "civilite": "Mr",
+            },
+            "montant_adhesion_national": 6,
+            "montant_adhesion_departemental": 10,
+            "montant_abonnement": 0,
+            "montant_don": 0,
+        },
+        {
+            "foyer_id" : 1235,
+            "code" : "069P170002",
+            "cpe_principal_id": 235,
+            "parent_principal": {
+                "id": 13,
+                "nom": "DUPONT",
+                "prenom": "Jean", 
+                "civilite": "Mr",
+            },
+            "montant_adhesion_national": 6,
+            "montant_adhesion_departemental": 10,
+            "montant_abonnement": 3.35,
+            "montant_don": 10.45,
+        }
+        ]
+
+## Liste des conseils locaux [/normarest/perimetre/{cdpe_id}/cpelist]
+
+### Liste des conseils locaux [GET]
+Liste des conseils locaux d'un CDPE
+
++ Parameters
+    + cdpe_id (number) - identifiant cdpe (perimetre departemental)
+
++ Response 200
+
+        [
+        {
+            "perimtere_id" : 1234,
+            "code" : "06900001",
+            "nom": "CL VILLEURBANNE",
+        },
+        {
+            "perimtere_id" : 1235,
+            "code" : "06900002",
+            "nom": "CL LYON 02",
+        }
+        ]
+
+## Mise à jour du conseil local du foyer [/normarest/foyer/changecpe]
+
+### Mise à jour du conseil local du foyer [POST]
+Change le conseil local du foyer
+
++ Request (application/json)
+
+        {
+            "foyer_id": 12345,
+            "cpe_principal_id": 123
+        }
+        
++ Response 200
+
+        { 
+            "message" : "ok"
+        }
+        
++ Response 400
+
+        { 
+            "message" : "Il est impossible de mettre ce CL sur ce foyer"
+        }
+        
+## Mise à jour du conseil local du foyer [/normarest/workflow/adhesionenligne/attentepaiement]
+
+### Mise à jour du conseil local du foyer [POST]
+Change le type de paiement du/des foyers pour les passer en attente de paiement
+
++ Request (application/json)
+
+        {
+            "foyers": [123,124,134]
+        }
+        
++ Response 200
+
+        { 
+            "message" : "ok"
+        }
+        
++ Response 400
+
+        { 
+            "message" : "message d'erreur"
+        }
+        
+## Validation adhésion en ligne [/normarest/workflow/adhesionenligne/validation]
+
+### Validation adhésion en ligne [POST]
+Change le conseil local du foyer
+
++ Request (application/json)
+
+        {
+            "foyers": [123,124,134]
+        }
+        
++ Response 200
+
+        { 
+            "message" : "ok"
+        }
+        
++ Response 400
+
+        { 
+            "message" : "message d'erreur"
+        }
+        
+        
 # Data Structures
 
 ## Foyer (object)
