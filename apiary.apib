@@ -392,6 +392,27 @@ Valide l'adhésion en ligne du/des foyers, le statut du foyer change et il "rent
             "message" : "message d'erreur"
         }
         
+## Utilisateur connecté [/normarest/utilisateur_connecte]
+
+### Utilisateur connecté [GET]
+Informations sur l'utilisateur connecté, notament la liste de droits d'accès associés.
+
++ Response 200
+
+        {
+            "utilisateur_id" : 1234,
+            "nom": "DI MERCURIO",
+            "prenom": "Guy",
+            "login": "guy69",
+            "email": "gdi-mercurio@fcpe.asso.fr",
+            "perimetre" : {
+                "perimetre_id" : 12,
+                "code" : "012",
+                "type_perimetre_id" : 2
+            },
+            "droits": [ 12, 23, 34, 45] 
+        },
+
         
 # Data Structures
 
