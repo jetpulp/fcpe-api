@@ -280,7 +280,8 @@ Le paramètre type_paiement est facultatif
             "montant_adhesion_national": 6,
             "montant_adhesion_departemental": 10,
             "montant_abonnement": 0,
-            "montant_don": 0
+            "montant_don": 0,
+            "type_paiement": "PAYPAL"
         },
         {
             "foyer_id" : 1235,
@@ -295,8 +296,44 @@ Le paramètre type_paiement est facultatif
             "montant_adhesion_national": 6,
             "montant_adhesion_departemental": 10,
             "montant_abonnement": 3.35,
-            "montant_don": 10.45
+            "montant_don": 10.45,
+            "type_paiement": "PAYPAL"
         }
+        ]
+
+## Liste des conseils départementaux [/normarest/perimetre/cdpelist]
+
+### Liste des conseils départementaux [GET]
+Liste des conseils départementaux
+
++ Response 200
+
+        [
+        {
+            "perimtere_id" : 2,
+            "code" : "001",
+            "nom": "Ain",
+        },
+        {
+            "perimtere_id" : 3,
+            "code" : "002",
+            "nom": "Aisne",
+        },
+        {
+            "perimtere_id" : 4,
+            "code" : "003",
+            "nom": "Allier",
+        },
+        {
+            "perimtere_id" : 38,
+            "code" : "038",
+            "nom": "Isère",
+        },
+        {
+            "perimtere_id" : 69,
+            "code" : "069",
+            "nom": "Rhône",
+        },
         ]
 
 ## Liste des conseils locaux [/normarest/perimetre/{cdpe_id}/cpelist]
