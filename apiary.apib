@@ -255,15 +255,18 @@ Le paramètre dryn_run permet de faire un appel qui va vérifier les conditions 
 ### Workflow validation adhésions en ligne [POST]
 Liste des foyers ayant créé une adhésion en ligne à valider
 
-Le paramètre type_paiement est facultatif
+Le paramètre type_paiement est facultatif, s'il n'est pas specifié tous les types de paiements seront retournés
+
+Le paramètre inclus_en_attente est facultatif, s'il n'est pas specifié les paiements en attente seront retournés
 
 + Request (application/json)
 
         {
             "cdpe_id": 69,
-            "type_paiement": "PAYPAL"
-        }
-        
+            "types_paiement":  ["CHEQUE","VIREMENT","PAYPAL"],
+            "inclus_en_attente" : true
+        }        
+
 + Response 200
 
         [
