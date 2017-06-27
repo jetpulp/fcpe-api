@@ -499,6 +499,7 @@ Informations sur l'utilisateur connecté, notament la liste de droits d'accès a
 + telephone_mobile: 0678784565 (string)
 + newsletter: true (boolean)
 + enfants (array[Enfant])
++ responsabilites (array[Responsabilite])
 
 ## Personne (object)
 + id: 12 (number)
@@ -519,5 +520,18 @@ Informations sur l'utilisateur connecté, notament la liste de droits d'accès a
 + prenom: Pierre (string) 
 + date_naissance: 18/09/2010 (string)
 + etablissement_scolaire_id: 3 (number)
++ etablissement_scolaire_nom : Ecole Primaire Paul Langevin (string)
 + classe_id: 3 (number)
++ classe_libelle: CP (string)
 + section: test (string)
+
+## Responsabilite (object)
+ + responsabilite_perimetre_id: 12 (number)
+ + nom: Président (string)
+ + perimetre (Perimetre)
+ 
+## Perimetre (object)
+ + perimetre_id: 123 (number)
+ + code: 0069P20002 (string)
+ + nom: CL Lyon 02 (string)
+ + type_perimetre_id: 3 (number)
