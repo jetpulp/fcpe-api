@@ -181,7 +181,52 @@ Permet d'identifier et de récpérer les informations de l'adhérent
         
 + Response 200
 
-    + Attributes (Foyer)
+        {
+            "foyer_id": 25,
+            "cdpe_id": 69,
+            "cpe_principal_id": 12345,
+            "adherent_annee_courrante": false,
+            "code": "069P1600002",
+            "parent_principal": {
+               "id": 12,
+               "nom": "DUPOND",
+               "prenom": "Jean",
+               "civilite": "Mr"
+            },
+            "adresse" : {
+               "adresse": "12 avenue tony Garnier",
+               "commune_id": "1234",
+               "code_postal": "69007",
+               "ville": "LYON",
+               "pays": "FRANCE"
+            },
+            "email": "jean.dupond@jetpulp.fr",
+            "telephone_mobile": "0678784565",
+            "newsletter": true,
+            "enfants" : [
+            {
+               "id": 13,
+               "nom": "DUPOND",
+               "prenom": "Pierre",
+               "date_naissance": "18/09/2010",
+               "etablissement_scolaire_id": 3,
+               "etablissement_scolaire_nom" : "Ecole Primaire",
+               "classe_id": 3,
+               "classe_libelle": "CP",
+               "section": "test"
+            }   
+            ],
+            "responsabilites" : [
+            {
+               "responsabilite_perimetre_id" : 12,
+               "nom" : "Président",
+               "perimetre_id" : "123",
+               "code": "0069P20002",
+               "nom": "CL Lyon 02",
+               "type_perimetre_id": 3
+            }
+            ]
+        }
 
 ## Demande de changement de mot de passe foyer [/secure/foyers/askforchangepassword]
 
