@@ -276,14 +276,12 @@ du foyer modifiées seront mise à jour.
 
 Le paramètre dryn_run permet de faire un appel qui va vérifier les conditions d'adhésion mai ne pas créer l'adhésion, utilisé AVANT le paiement Paypal
 
-Le champ niveau_adhesion donne le niveau d'adhésion choisi : 4 ou 5 
-
 + Request (application/json)
 
     + Attributes
         + foyer (Foyer)
         + operation: [ADHESION|RE_ADHESION|DON_SEUL] (string)
-        + niveau_adhesion: 4 (number)
+        + niveau_adhesion: [NIVEAU_WEB1|NIVEAU_WEB2] (string)
         + paiement: [PAYPAL|CHEQUE|VIREMENT] (string)
         + abonnements (array)
             + type_abonnment_id: 12
