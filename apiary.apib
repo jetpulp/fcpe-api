@@ -167,6 +167,27 @@ Public : peux être appelé directement depuis le navigateur.
         }
         ]
         
+## Existance Foyer [/secure/foyers/exist]
+
+### Existance Foyer  [POST]
+Permet de verifier si un foyer qui va faire une adhesion n'est pas déjà adherent sur le departement
+
++ Request (application/json)
+
+        { 
+            "email": "sylvain.pras@jetpulp.fr",
+            "nom": "PRAS",
+            "prenom": "Sylvain",
+            "cdpe_id": 69,
+        }
+        
++ Response 200
+
+        {
+            "exist": true,
+        }
+
+        
 ## Identification Foyer [/secure/foyers/identification]
 
 ### Identification Foyer [POST]
