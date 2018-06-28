@@ -561,7 +561,55 @@ Informations sur l'utilisateur connecté, notament la liste de droits d'accès a
             "droits": [ 12, 23, 34, 45] 
         }
 
-        
+## Liste utilisateurs [/normarest/perimetre/{cdpe_id}/utilisateurs]
+
+### Liste utilisateurs [GET]
+Liste des utilisateurs d'un département 
+
++ Response 200
+
+        {
+            "perimetre" : 2,
+            "code" : "001",
+            "nom": "Ain"
+            "utilisateurs": [
+            {
+                "utilisateur_id" : 1234,
+                "nom": "DI MERCURIO",
+                "prenom": "Guy",
+                "login": "guy69",
+                "email": "gdi-mercurio@fcpe.asso.fr",
+                "profil" : [
+                {
+                   "groupe_utilisateur_id" : 12,
+                   "nom" : "ADMINISTRATIF",
+                },
+                {
+                   "groupe_utilisateur_id" : 13,
+                   "nom" : "SIEGE",
+                }
+                ]
+            },
+            {
+                "utilisateur_id" : 1235,
+                "nom": "DI MERCURIO",
+                "prenom": "Guy",
+                "login": "guy691",
+                "email": "gdi-mercurio2@fcpe.asso.fr",
+                "profil" : [
+                {
+                   "groupe_utilisateur_id" : 12,
+                   "nom" : "ADMINISTRATIF",
+                },
+                {
+                   "groupe_utilisateur_id" : 13,
+                   "nom" : "SIEGE",
+                }
+                ]
+            }
+            ]
+        }
+            
 # Data Structures
 
 ## Foyer (object)
